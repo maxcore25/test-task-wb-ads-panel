@@ -1,45 +1,41 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AdvertisementService } from './advertisement.service';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
-import { UpdateAdvertisementDto } from './dto/update-advertisement.dto';
 
 @Controller('ads')
 export class AdvertisementController {
   constructor(private readonly advertisementService: AdvertisementService) {}
 
   @Post()
-  create(@Body() createAdvertisementDto: CreateAdvertisementDto) {
-    return this.advertisementService.create(createAdvertisementDto);
+  getStats(@Body() createAdvertisementDto: CreateAdvertisementDto) {
+    return this.advertisementService.getStats(createAdvertisementDto);
   }
 
-  @Get()
-  findAll() {
-    return this.advertisementService.findAll();
-  }
+  // @Post()
+  // create(@Body() createAdvertisementDto: CreateAdvertisementDto) {
+  //   return this.advertisementService.create(createAdvertisementDto);
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.advertisementService.findOne(+id);
-  }
+  // @Get()
+  // findAll() {
+  //   return this.advertisementService.findAll();
+  // }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateAdvertisementDto: UpdateAdvertisementDto,
-  ) {
-    return this.advertisementService.update(+id, updateAdvertisementDto);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.advertisementService.findOne(+id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.advertisementService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(
+  //   @Param('id') id: string,
+  //   @Body() updateAdvertisementDto: UpdateAdvertisementDto,
+  // ) {
+  //   return this.advertisementService.update(+id, updateAdvertisementDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.advertisementService.remove(+id);
+  // }
 }
