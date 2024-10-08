@@ -28,11 +28,11 @@ ENV NODE_ENV production
 
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/yarn.lock ./
-COPY --from=builder /app/pnpm-lock.yaml ./
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/yarn.lock ./
+COPY --from=build /app/pnpm-lock.yaml ./
 
 EXPOSE 8000
 
