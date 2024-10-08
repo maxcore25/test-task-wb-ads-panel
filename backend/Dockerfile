@@ -1,5 +1,5 @@
 # Build image
-FROM node:18-alpine as build
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ RUN \
     fi
 
 # Prod image
-FROM  node:18-alpine as prod
+FROM  node:18-alpine AS prod
 
 ENV NODE_ENV production
 
