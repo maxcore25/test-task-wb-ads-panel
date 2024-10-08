@@ -1,10 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
+import axios from 'axios';
 
 @Injectable()
 export class AdvertisementService {
-  getStats(createAdvertisementDto: CreateAdvertisementDto) {
+  async getStats(createAdvertisementDto: CreateAdvertisementDto) {
     console.log(createAdvertisementDto);
+
+    const res = await axios.post(
+      'https://app.marketspace.ru/testing-api/adv/v2/fullstats',
+      [
+        {
+          id: createAdvertisementDto.advert,
+          dates: [createAdvertisementDto.date],
+        },
+      ],
+    );
+
+    console.log(res.data);
 
     return 'This action adds a new advertisement';
   }
