@@ -2,9 +2,11 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
+RUN npm i -g pnpm
+
 COPY package.json pnpm-lock.yaml ./
 
-RUN npm i -g pnpm && pnpm i
+RUN pnpm i
 
 COPY . .
 
@@ -14,10 +16,12 @@ FROM node:20-alpine AS prod
 
 WORKDIR /app
 
+RUN npm i -g pnpm
+
 COPY --from=build /app/dist ./dist
 
 COPY package.json pnpm-lock.yaml ./
 
-RUN npm i -g pnpm && pnpm i --prod --frozen-lockfile
+RUN pnpm i --prod --frozen-lockfile
 
 CMD [ "node", "./dist/main.js" ]
