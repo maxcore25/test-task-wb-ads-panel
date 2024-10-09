@@ -1,4 +1,4 @@
-export const addFullstats = [
+export const testAdvFullstats = [
   {
     views: 18804,
     clicks: 667,
