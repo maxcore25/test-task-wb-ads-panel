@@ -4,7 +4,7 @@ import { AdvertisementModule } from './advertisement/advertisement.module';
 
 @Module({
   imports: [
-    // MongooseModule.forRoot('mongodb://localhost/nest'),
+    // MongooseModule.forRoot('mongodb://mongodb:27017/wb_ads_db'),
     AdvertisementModule,
   ],
 })
