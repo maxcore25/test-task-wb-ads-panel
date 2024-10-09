@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
 import axios from 'axios';
+import { InjectModel } from '@nestjs/mongoose';
+import { Advertisement } from './entities/advertisement.entity';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class AdvertisementService {
+  constructor(
+    @InjectModel(Advertisement.name)
+    private advertisementModel: Model<Advertisement>,
+  ) {}
+
   async getStats(createAdvertisementDto: CreateAdvertisementDto) {
-    console.log(createAdvertisementDto);
+    try {
+      const res = await axios.post(
+        'https://app.marketspace.ru/testing-api/adv/v2/fullstats',
+        [
+          {
+            id: createAdvertisementDto.advert,
+            dates: [createAdvertisementDto.date],
+          },
+        ],
+      );
 
-    const res = await axios.post(
-      'https://app.marketspace.ru/testing-api/adv/v2/fullstats',
-      [
-        {
-          id: createAdvertisementDto.advert,
-          dates: [createAdvertisementDto.date],
-        },
-      ],
-    );
+      const createdAdvertisement = new this.advertisementModel(res.data);
+      createdAdvertisement.save();
 
-    console.log(res.data);
-
-    // return 'This action adds a new advertisement';
-    return res.data;
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log('Error:', error);
+      return { error };
+    }
   }
 
   // create(createAdvertisementDto: CreateAdvertisementDto) {
