@@ -11,18 +11,18 @@ services:
       - '27017:27017'
     volumes:
       - mongo-volume:/data/db
-  # backend:
-  #   container_name: backend
-  #   build:
-  #     context: ./backend
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - mongodb
-  #   # volumes:
-  #   #   - ./backend:/app
-  #   ports:
-  #     - '8000:8000'
 
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    # volumes:
+    #   - ./backend:/app
+    ports:
+      - '8000:8000'
   # frontend:
   #   container_name: frontend
   #   build:
