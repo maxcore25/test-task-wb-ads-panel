@@ -8,28 +8,27 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=123
     ports:
-      - "27017:27017"
+      - '27017:27017'
     volumes:
       - mongo-volume:/data/db
 
   backend:
     container_name: backend
     build:
-      context: ./backend
+      context: ./backend2
     restart: unless-stopped
     depends_on:
       - mongodb
-    volumes:
-      - ./backend:/app
+    # volumes:
+    #   - ./backend:/app
     ports:
       - '8000:8000'
-
-  frontend:
-    container_name: frontend
-    build:
-      context: ./frontend
-    ports:
-      - '80:80'
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - '80:80'
 
 volumes:
   mongo-volume:
