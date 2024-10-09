@@ -1,7 +1,9 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AdvertisementService } from './advertisement.service';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Ads')
 @Controller('ads')
 export class AdvertisementController {
   constructor(private readonly advertisementService: AdvertisementService) {}
