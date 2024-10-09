@@ -19,7 +19,8 @@ export class AdvertisementService {
 
     console.log(res.data);
 
-    return 'This action adds a new advertisement';
+    // return 'This action adds a new advertisement';
+    return res.data;
   }
 
   // create(createAdvertisementDto: CreateAdvertisementDto) {
