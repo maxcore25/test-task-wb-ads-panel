@@ -1,38 +1,23 @@
-# Build image
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY package.json pnpm-lock.yaml ./
 
-RUN \
-    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+RUN npm i -g pnpm && pnpm i
 
 COPY . .
 
-RUN \
-    if [ -f yarn.lock ]; then yarn run build; \
-    elif [ -f package-lock.json ]; then npm run build; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+RUN pnpm run build
 
-# Prod image
-FROM  node:18-alpine AS prod
-
-ENV NODE_ENV production
+FROM node:20-alpine AS prod
 
 WORKDIR /app
 
 COPY --from=build /app/dist ./dist
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/pnpm-lock.yaml ./
 
-EXPOSE 8000
+COPY package.json pnpm-lock.yaml ./
 
-CMD ["node", "dist/main"]
+RUN npm i -g pnpm && pnpm i --prod --frozen-lockfile
+
+CMD [ "node", "./dist/main.js" ]
