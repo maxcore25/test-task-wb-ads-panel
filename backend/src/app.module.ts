@@ -6,7 +6,7 @@ import { AdvertisementModule } from './advertisement/advertisement.module';
   imports: [
     // MongooseModule.forRoot('mongodb://mongodb:27017/wb_ads_db'),
     MongooseModule.forRoot(
-      'mongodb://user:123@mongodb:27017/wb_ads_db?authSource=admin',
+      'mongodb://user:123@mongo:27017/wb_ads_db?authSource=admin',
     ),
     AdvertisementModule,
   ],
