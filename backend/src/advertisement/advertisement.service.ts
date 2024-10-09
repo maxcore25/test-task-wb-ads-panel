@@ -31,9 +31,21 @@ export class AdvertisementService {
       // console.log(res.data);
       // return res.data;
 
-      const createdAdvertisement = new this.advertisementModel(
-        testAdvFullstats,
-      );
+      const nms = testAdvFullstats[0].days[0].apps.map((app) => ({
+        nmId: app.nm[0].nmId,
+        clicks: app.clicks,
+        cpc: app.cpc,
+        ctr: app.ctr,
+      }));
+
+      const createdAdvertisement = new this.advertisementModel({
+        summary: {
+          clicks: testAdvFullstats[0].clicks,
+          cpc: testAdvFullstats[0].cpc,
+          ctr: testAdvFullstats[0].ctr,
+        },
+        list: nms,
+      });
       return createdAdvertisement.save();
     } catch (error) {
       console.log('Error:', error);
@@ -45,9 +57,15 @@ export class AdvertisementService {
   //   return 'This action adds a new advertisement';
   // }
 
-  // findAll() {
-  //   return `This action returns all advertisement`;
-  // }
+  async findAll() {
+    try {
+      const advertisements = await this.advertisementModel.find({});
+      console.log(advertisements);
+      return advertisements;
+    } catch (error) {
+      console.error('Error fetching advertisements:', error);
+    }
+  }
 
   // findOne(id: number) {
   //   return `This action returns a #${id} advertisement`;
