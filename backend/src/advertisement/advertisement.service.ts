@@ -4,6 +4,7 @@ import axios from 'axios';
 import { InjectModel } from '@nestjs/mongoose';
 import { Advertisement } from './entities/advertisement.entity';
 import { Model } from 'mongoose';
+import { testAdvFullstats } from 'src/temp';
 
 @Injectable()
 export class AdvertisementService {
@@ -14,21 +15,26 @@ export class AdvertisementService {
 
   async getStats(createAdvertisementDto: CreateAdvertisementDto) {
     try {
-      const res = await axios.post(
-        'https://app.marketspace.ru/testing-api/adv/v2/fullstats',
-        [
-          {
-            id: createAdvertisementDto.advert,
-            dates: [createAdvertisementDto.date],
-          },
-        ],
+      // const res = await axios.post(
+      //   'https://app.marketspace.ru/testing-api/adv/v2/fullstats',
+      //   [
+      //     {
+      //       id: createAdvertisementDto.advert,
+      //       dates: [createAdvertisementDto.date],
+      //     },
+      //   ],
+      // );
+
+      // const createdAdvertisement = new this.advertisementModel(res.data);
+      // createdAdvertisement.save();
+
+      // console.log(res.data);
+      // return res.data;
+
+      const createdAdvertisement = new this.advertisementModel(
+        testAdvFullstats,
       );
-
-      const createdAdvertisement = new this.advertisementModel(res.data);
-      createdAdvertisement.save();
-
-      console.log(res.data);
-      return res.data;
+      return createdAdvertisement.save();
     } catch (error) {
       console.log('Error:', error);
       return { error };
