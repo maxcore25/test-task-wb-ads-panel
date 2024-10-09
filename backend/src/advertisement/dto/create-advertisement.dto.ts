@@ -3,9 +3,15 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAdvertisementDto {
   @IsNumber()
-  @ApiProperty()
+  @ApiProperty({
+    default: 19447497,
+    examples: [19447497, 18854755],
+  })
   advert: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    default: '2024-10-08',
+    example: '2024-10-08',
+  })
   date: string;
 }
