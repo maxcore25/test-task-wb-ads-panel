@@ -4,7 +4,7 @@ import { HydratedDocument } from 'mongoose';
 export type AdvertisementDocument = HydratedDocument<Advertisement>;
 
 @Schema()
-export class Summary {
+export class Metrics {
   @Prop()
   clicks: number;
 
@@ -16,18 +16,12 @@ export class Summary {
 }
 
 @Schema()
-export class List {
+export class Summary extends Metrics {}
+
+@Schema()
+export class List extends Metrics {
   @Prop()
   nmId: number;
-
-  @Prop()
-  clicks: number;
-
-  @Prop()
-  ctr: number;
-
-  @Prop()
-  cpc: number;
 }
 
 @Schema()
