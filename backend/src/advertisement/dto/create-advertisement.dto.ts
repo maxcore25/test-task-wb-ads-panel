@@ -1,4 +1,4 @@
-import { IsNumber } from 'class-validator';
+import { IsNumber, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAdvertisementDto {
@@ -9,6 +9,9 @@ export class CreateAdvertisementDto {
   })
   advert: number;
 
+  @Matches(/^\d{4}-\d{2}-\d{2}$/, {
+    message: 'Date must be in the format YYYY-MM-DD',
+  })
   @ApiProperty({
     default: '2024-10-08',
     example: '2024-10-08',
