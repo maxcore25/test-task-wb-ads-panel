@@ -32,6 +32,12 @@ export class List {
 
 @Schema()
 export class Advertisement {
+  @Prop()
+  advert: number;
+
+  @Prop()
+  date: string;
+
   @Prop({ type: Summary })
   summary: Summary;
 
