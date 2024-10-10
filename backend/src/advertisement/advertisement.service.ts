@@ -73,7 +73,7 @@ export class AdvertisementService {
       .exec();
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} advertisement`;
-  // }
+  async remove(id: number) {
+    return await this.advertisementModel.findByIdAndDelete(id).exec();
+  }
 }
