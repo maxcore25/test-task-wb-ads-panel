@@ -3,7 +3,6 @@ import { HydratedDocument } from 'mongoose';
 
 export type AdvertisementDocument = HydratedDocument<Advertisement>;
 
-@Schema()
 export class Metrics {
   @Prop()
   clicks: number;
