@@ -63,17 +63,17 @@ export class AdvertisementService {
     return await this.advertisementModel.find().exec();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await this.advertisementModel.findById(id).exec();
   }
 
-  async update(id: number, updateAdvertisementDto: UpdateAdvertisementDto) {
+  async update(id: string, updateAdvertisementDto: UpdateAdvertisementDto) {
     return await this.advertisementModel
       .findByIdAndUpdate(id, updateAdvertisementDto)
       .exec();
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return await this.advertisementModel.findByIdAndDelete(id).exec();
   }
 }

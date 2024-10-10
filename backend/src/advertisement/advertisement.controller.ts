@@ -34,7 +34,7 @@ export class AdvertisementController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.advertisementService.findOne(+id);
+    return this.advertisementService.findOne(id);
   }
 
   @Patch(':id')
@@ -42,11 +42,11 @@ export class AdvertisementController {
     @Param('id') id: string,
     @Body() updateAdvertisementDto: UpdateAdvertisementDto,
   ) {
-    return this.advertisementService.update(+id, updateAdvertisementDto);
+    return this.advertisementService.update(id, updateAdvertisementDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.advertisementService.remove(+id);
+    return this.advertisementService.remove(id);
   }
 }
