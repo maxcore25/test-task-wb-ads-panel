@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch } from '@nestjs/common';
 import { AdvertisementService } from './advertisement.service';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { UpdateAdvertisementDto } from './dto/update-advertisement.dto';
 
 @ApiTags('Ads')
 @Controller('ads')
@@ -28,13 +29,13 @@ export class AdvertisementController {
     return this.advertisementService.findOne(+id);
   }
 
-  // @Patch(':id')
-  // update(
-  //   @Param('id') id: string,
-  //   @Body() updateAdvertisementDto: UpdateAdvertisementDto,
-  // ) {
-  //   return this.advertisementService.update(+id, updateAdvertisementDto);
-  // }
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateAdvertisementDto: UpdateAdvertisementDto,
+  ) {
+    return this.advertisementService.update(+id, updateAdvertisementDto);
+  }
 
   // @Delete(':id')
   // remove(@Param('id') id: string) {
