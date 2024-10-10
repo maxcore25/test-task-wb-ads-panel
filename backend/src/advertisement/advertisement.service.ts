@@ -62,9 +62,9 @@ export class AdvertisementService {
     return await this.advertisementModel.find().exec();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} advertisement`;
-  // }
+  async findOne(id: number) {
+    return await this.advertisementModel.findById(id).exec();
+  }
 
   // update(id: number, updateAdvertisementDto: UpdateAdvertisementDto) {
   //   return `This action updates a #${id} advertisement`;
