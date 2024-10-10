@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { InjectModel } from '@nestjs/mongoose';
 import { Advertisement } from './entities/advertisement.entity';
 import { Model } from 'mongoose';
@@ -53,9 +53,12 @@ export class AdvertisementService {
       });
 
       return await newAdvertisement.save();
-    } catch (error) {
-      console.log('Error:', error);
-      return { error };
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ error: string }>;
+      console.log('Error:', error.response?.data.error);
+      const status = error.response?.status || 500;
+      const message = error.response?.data.error || 'An error occurred';
+      throw new HttpException({ error: message }, status);
     }
   }
 
