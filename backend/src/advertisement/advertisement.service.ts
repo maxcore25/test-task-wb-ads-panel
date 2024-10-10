@@ -4,6 +4,7 @@ import axios from 'axios';
 import { InjectModel } from '@nestjs/mongoose';
 import { Advertisement } from './entities/advertisement.entity';
 import { Model } from 'mongoose';
+import { UpdateAdvertisementDto } from './dto/update-advertisement.dto';
 // import { testAdvFullstats } from 'src/temp';
 
 @Injectable()
@@ -66,9 +67,11 @@ export class AdvertisementService {
     return await this.advertisementModel.findById(id).exec();
   }
 
-  // update(id: number, updateAdvertisementDto: UpdateAdvertisementDto) {
-  //   return `This action updates a #${id} advertisement`;
-  // }
+  async update(id: number, updateAdvertisementDto: UpdateAdvertisementDto) {
+    return await this.advertisementModel
+      .findByIdAndUpdate(id, updateAdvertisementDto)
+      .exec();
+  }
 
   // remove(id: number) {
   //   return `This action removes a #${id} advertisement`;
