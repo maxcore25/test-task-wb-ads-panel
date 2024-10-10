@@ -22,7 +22,7 @@ export class AdvertisementController {
   @Post()
   @ApiOperation({ summary: 'Получить рекламную кампанию по номеру РК и дате' })
   @ApiResponse({
-    status: HttpStatus.OK,
+    status: HttpStatus.CREATED,
     description: 'Success',
     type: Advertisement,
   })
