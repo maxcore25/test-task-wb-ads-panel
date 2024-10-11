@@ -142,10 +142,10 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
             </FormItem>
           )}
         />
-        {error && <div className='text-red-500'>{error}</div>}
         <Button type='submit' disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Submit'}
         </Button>
+        {error && <div className='text-red-500'>{error}</div>}
       </form>
     </Form>
   );
