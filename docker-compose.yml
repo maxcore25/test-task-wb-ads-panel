@@ -42,12 +42,13 @@ services:
     #   - ./backend:/app
     ports:
       - '8000:8000'
-  # frontend:
-  #   container_name: frontend
-  #   build:
-  #     context: ./frontend
-  #   ports:
-  #     - '80:80'
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    ports:
+      - '80:80'
 
 volumes:
   mongo-volume:
