@@ -96,7 +96,8 @@ export function AdStatsTable({ data }: { data: AdStats }) {
               table.getRowModel().rows.map(row => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}>
+                  data-state={row.getIsSelected() && 'selected'}
+                >
                   {row.getVisibleCells().map(cell => (
                     <TableCell key={cell.id}>
                       {flexRender(
@@ -111,7 +112,8 @@ export function AdStatsTable({ data }: { data: AdStats }) {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'>
+                  className='h-24 text-center'
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -119,8 +121,8 @@ export function AdStatsTable({ data }: { data: AdStats }) {
           </TableBody>
         </Table>
       </div>
-      <div className='bg-muted p-4 rounded-md'>
-        <h2 className='text-lg font-semibold mb-2'>Summary</h2>
+      <div className='rounded-md bg-muted p-4'>
+        <h2 className='mb-2 text-lg font-semibold'>Summary</h2>
         <div className='grid grid-cols-3 gap-4'>
           <div>
             <p className='text-sm text-muted-foreground'>Total Clicks</p>

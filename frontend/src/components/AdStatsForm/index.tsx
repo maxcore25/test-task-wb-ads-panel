@@ -82,7 +82,8 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
               <FormLabel>Advert</FormLabel>
               <Select
                 onValueChange={value => field.onChange(Number(value))}
-                defaultValue={field.value.toString()}>
+                defaultValue={field.value.toString()}
+              >
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder='Select an advert' />
@@ -111,7 +112,8 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
                       className={cn(
                         'w-[240px] pl-3 text-left font-normal',
                         !field.value && 'text-muted-foreground'
-                      )}>
+                      )}
+                    >
                       {field.value ? (
                         format(field.value, 'PPP')
                       ) : (
