@@ -24,14 +24,19 @@ const columns: ColumnDef<AdStatsItem>[] = [
   },
   {
     accessorKey: 'clicks',
-    header: 'Clicks',
+    header: () => <div className='text-right'>Clicks</div>,
+    cell: ({ row }) => {
+      return (
+        <div className='text-right font-medium'>{row.getValue('clicks')}</div>
+      );
+    },
   },
   {
     accessorKey: 'ctr',
-    header: 'CTR',
+    header: () => <div className='text-right'>CTR</div>,
     cell: ({ row }) => {
       const ctr = parseFloat(row.getValue('ctr'));
-      const formatted = new Intl.NumberFormat('en-US', {
+      const formatted = new Intl.NumberFormat('ru-RU', {
         style: 'percent',
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
@@ -41,12 +46,12 @@ const columns: ColumnDef<AdStatsItem>[] = [
   },
   {
     accessorKey: 'cpc',
-    header: 'CPC',
+    header: () => <div className='text-right'>CPC</div>,
     cell: ({ row }) => {
       const cpc = parseFloat(row.getValue('cpc'));
-      const formatted = new Intl.NumberFormat('en-US', {
+      const formatted = new Intl.NumberFormat('ru-RU', {
         style: 'currency',
-        currency: 'USD',
+        currency: 'RUB',
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }).format(cpc);
