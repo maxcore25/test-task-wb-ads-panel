@@ -136,7 +136,7 @@ export function AdStatsTable({ data }: { data: AdStats }) {
           <div>
             <p className='text-sm text-muted-foreground'>Average CTR</p>
             <p className='text-2xl font-bold'>
-              {new Intl.NumberFormat('en-US', {
+              {new Intl.NumberFormat('ru-RU', {
                 style: 'percent',
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
@@ -146,9 +146,9 @@ export function AdStatsTable({ data }: { data: AdStats }) {
           <div>
             <p className='text-sm text-muted-foreground'>Average CPC</p>
             <p className='text-2xl font-bold'>
-              {new Intl.NumberFormat('en-US', {
+              {new Intl.NumberFormat('ru-RU', {
                 style: 'currency',
-                currency: 'USD',
+                currency: 'RUB',
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               }).format(data.summary.cpc)}
