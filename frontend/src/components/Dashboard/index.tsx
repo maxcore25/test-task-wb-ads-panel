@@ -20,7 +20,7 @@ export function Dashboard() {
               WB Advertisement Statistics
             </h1>
           </div>
-          <div className='grid gap-16'>
+          <div className='grid gap-16 md:gap-32'>
             <AdStatsForm onSubmit={setAdStats} />
             {adStats ? <AdStatsTable data={adStats} /> : <NoDataAlert />}
           </div>
