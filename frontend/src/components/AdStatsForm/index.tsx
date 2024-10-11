@@ -35,9 +35,9 @@ const formSchema = z.object({
   date: z.date(),
 });
 
-interface AdStatsFormProps {
+type AdStatsFormProps = {
   onSubmit: (data: AdStats) => void;
-}
+};
 
 export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -75,13 +75,13 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmitForm)}
-        className='w-[240px] space-y-8'
+        className='grid gap-4 md:flex md:items-end md:gap-4'
       >
         <FormField
           control={form.control}
           name='advert'
           render={({ field }) => (
-            <FormItem>
+            <FormItem className='w-full md:w-[240px]'>
               <FormLabel>Advert</FormLabel>
               <Select
                 onValueChange={value => field.onChange(Number(value))}
@@ -105,7 +105,7 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
           control={form.control}
           name='date'
           render={({ field }) => (
-            <FormItem className='flex flex-col'>
+            <FormItem className='flex w-full flex-col md:w-[240px]'>
               <FormLabel>Date</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
@@ -113,7 +113,7 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
                     <Button
                       variant={'outline'}
                       className={cn(
-                        'w-[240px] pl-3 text-left font-normal',
+                        'pl-3 text-left font-normal',
                         !field.value && 'text-muted-foreground'
                       )}
                     >
