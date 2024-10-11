@@ -1,3 +1,6 @@
+import { z } from 'zod';
+import { AdStatsFormSchema } from '@/lib/validations';
+
 export type AdStatsItem = {
   nmId: number;
   clicks: number;
@@ -14,7 +17,4 @@ export type AdStats = {
   list: AdStatsItem[];
 };
 
-export type AdStatsFormData = {
-  advert: number;
-  date: Date;
-};
+export type AdStatsFormValues = z.infer<typeof AdStatsFormSchema>;

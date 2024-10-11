@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { axiosInstance } from '@/api';
 import { format } from 'date-fns';
-import { AdStats, AdStatsFormData } from '@/types';
-import { formSchema } from '@/lib/validations';
+import { AdStats, AdStatsFormValues } from '@/types';
+import { AdStatsFormSchema } from '@/lib/validations';
 
 type UseAdStatsFormProps = {
   onSubmit: (data: AdStats) => void;
@@ -14,21 +14,21 @@ export const useAdStatsForm = ({ onSubmit }: UseAdStatsFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const form = useForm<AdStatsFormData>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<AdStatsFormValues>({
+    resolver: zodResolver(AdStatsFormSchema),
     defaultValues: {
       advert: 19447497,
       date: new Date(),
     },
   });
 
-  async function onSubmitForm(values: AdStatsFormData) {
+  async function onSubmitForm(data: AdStatsFormValues) {
     setIsLoading(true);
     setError(null);
     try {
       const response = await axiosInstance.post('/api/ads', {
-        advert: values.advert,
-        date: format(values.date, 'yyyy-MM-dd'),
+        advert: data.advert,
+        date: format(data.date, 'yyyy-MM-dd'),
       });
       onSubmit(response.data);
     } catch (error) {
