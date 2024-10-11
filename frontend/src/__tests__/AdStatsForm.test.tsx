@@ -3,7 +3,7 @@ import { AdStatsForm } from '@/components/AdStatsForm';
 import { vi } from 'vitest';
 
 describe('AdStatsForm Component', () => {
-  it('renders correctly', () => {
+  it('should render correctly', () => {
     const onSubmitMock = vi.fn();
     render(<AdStatsForm onSubmit={onSubmitMock} />);
 
