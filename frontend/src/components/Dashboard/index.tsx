@@ -5,10 +5,9 @@ import { AdStatsTable } from '../AdStatsTable';
 import { AdStats } from '@/types';
 import { UpperHeader } from '../UpperHeader';
 import { NavBar } from '../NavBar';
-import { testAd } from '@/temp';
 
 export function Dashboard() {
-  const [adStats, setAdStats] = useState<AdStats | null>(testAd);
+  const [adStats, setAdStats] = useState<AdStats | null>(null);
 
   return (
     <div className='grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
