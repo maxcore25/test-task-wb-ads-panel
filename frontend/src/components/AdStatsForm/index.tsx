@@ -46,7 +46,7 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
   const form = useForm<AdStatsFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      advert: 123,
+      advert: 19447497,
       date: new Date(),
     },
   });
@@ -93,8 +93,8 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value='123'>123</SelectItem>
-                  <SelectItem value='890'>890</SelectItem>
+                  <SelectItem value='19447497'>19447497</SelectItem>
+                  <SelectItem value='18854755'>18854755</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
