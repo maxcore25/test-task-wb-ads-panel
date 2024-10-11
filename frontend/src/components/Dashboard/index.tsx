@@ -10,7 +10,7 @@ export function Dashboard() {
   const [adStats, setAdStats] = useState<AdStats | null>(null);
 
   return (
-    <div className='grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
+    <div className='min-h-screen md:grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
       <NavBar />
       <div className='flex flex-col'>
         <UpperHeader />
@@ -20,7 +20,7 @@ export function Dashboard() {
               WB Advertisement Statistics
             </h1>
           </div>
-          <div className='grid gap-16'>
+          <div className='flex flex-col gap-16'>
             <AdStatsForm onSubmit={setAdStats} />
             {adStats ? <AdStatsTable data={adStats} /> : <NoDataAlert />}
           </div>
