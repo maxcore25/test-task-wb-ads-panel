@@ -166,7 +166,7 @@ export function AdStatsTable({ data }: { data: AdStats }) {
       </div>
       <div className='rounded-md bg-muted p-4'>
         <h2 className='mb-2 text-lg font-semibold'>Summary</h2>
-        <div className='grid grid-cols-3 gap-4'>
+        <div className='grid gap-4 md:grid-cols-3'>
           <div>
             <p className='text-sm text-muted-foreground'>Total Clicks</p>
             <p className='text-2xl font-bold'>{data.summary.clicks}</p>
