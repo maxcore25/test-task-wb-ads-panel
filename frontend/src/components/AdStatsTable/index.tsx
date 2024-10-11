@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/table';
 import { useState } from 'react';
 import { AdStats, AdStatsItem } from '@/types';
+import { Button } from '../ui/button';
+import { ArrowUpDown } from 'lucide-react';
 
 const columns: ColumnDef<AdStatsItem>[] = [
   {
@@ -24,7 +26,19 @@ const columns: ColumnDef<AdStatsItem>[] = [
   },
   {
     accessorKey: 'clicks',
-    header: () => <div className='text-right'>Clicks</div>,
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Clicks
+            <ArrowUpDown className='ml-2 h-4 w-4' />
+          </Button>
+        </div>
+      );
+    },
     cell: ({ row }) => {
       return (
         <div className='text-right font-medium'>{row.getValue('clicks')}</div>
@@ -33,7 +47,19 @@ const columns: ColumnDef<AdStatsItem>[] = [
   },
   {
     accessorKey: 'ctr',
-    header: () => <div className='text-right'>CTR</div>,
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            CTR
+            <ArrowUpDown className='ml-2 h-4 w-4' />
+          </Button>
+        </div>
+      );
+    },
     cell: ({ row }) => {
       const ctr = parseFloat(row.getValue('ctr'));
       const formatted = new Intl.NumberFormat('ru-RU', {
@@ -46,7 +72,19 @@ const columns: ColumnDef<AdStatsItem>[] = [
   },
   {
     accessorKey: 'cpc',
-    header: () => <div className='text-right'>CPC</div>,
+    header: ({ column }) => {
+      return (
+        <div className='text-right'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            CPC
+            <ArrowUpDown className='ml-2 h-4 w-4' />
+          </Button>
+        </div>
+      );
+    },
     cell: ({ row }) => {
       const cpc = parseFloat(row.getValue('cpc'));
       const formatted = new Intl.NumberFormat('ru-RU', {
