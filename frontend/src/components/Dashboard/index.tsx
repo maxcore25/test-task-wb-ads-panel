@@ -9,7 +9,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { NoDataAlert } from '../NoDataAlert';
 import { AdStatsForm } from '../AdStatsForm';
 import { AdStatsTable } from '../AdStatsTable';
@@ -59,6 +65,8 @@ export function Dashboard() {
               </Button>
             </SheetTrigger>
             <SheetContent side='left' className='flex flex-col'>
+              <SheetTitle className='sr-only'>Menu</SheetTitle>
+              <SheetDescription className='sr-only'></SheetDescription>
               <nav className='grid gap-2 text-lg font-medium'>
                 <a
                   href='#'
@@ -101,7 +109,7 @@ export function Dashboard() {
               WB Advertisement Statistics
             </h1>
           </div>
-          <div className=''>
+          <div className='grid gap-16'>
             <AdStatsForm onSubmit={setAdStats} />
             {adStats ? <AdStatsTable data={adStats} /> : <NoDataAlert />}
           </div>
