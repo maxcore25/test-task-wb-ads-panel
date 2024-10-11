@@ -73,7 +73,10 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmitForm)} className='space-y-8'>
+      <form
+        onSubmit={form.handleSubmit(onSubmitForm)}
+        className='w-[240px] space-y-8'
+      >
         <FormField
           control={form.control}
           name='advert'
