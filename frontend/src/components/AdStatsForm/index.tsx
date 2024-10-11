@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { axiosInstance } from '@/api';
+import { useAdStatsForm } from './AdStatsForm.hooks';
+import { AdStats } from '@/types';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -28,48 +25,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { AdStats, AdStatsFormData } from '@/types';
-
-const formSchema = z.object({
-  advert: z.number().min(1),
-  date: z.date(),
-});
 
 type AdStatsFormProps = {
   onSubmit: (data: AdStats) => void;
 };
 
 export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const form = useForm<AdStatsFormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      advert: 19447497,
-      date: new Date(),
-    },
-  });
-
-  async function onSubmitForm(values: AdStatsFormData) {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await axiosInstance.post('/api/ads', {
-        advert: values.advert,
-        date: format(values.date, 'yyyy-MM-dd'),
-      });
-      onSubmit(response.data);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('An unknown error occurred');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const { form, isLoading, error, onSubmitForm } = useAdStatsForm({ onSubmit });
 
   return (
     <Form {...form}>
