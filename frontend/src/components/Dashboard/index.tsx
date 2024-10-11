@@ -5,9 +5,10 @@ import { AdStatsTable } from '../AdStatsTable';
 import { AdStats } from '@/types';
 import { UpperHeader } from '../UpperHeader';
 import { NavBar } from '../NavBar';
+import { testAd } from '@/temp';
 
 export function Dashboard() {
-  const [adStats, setAdStats] = useState<AdStats | null>(null);
+  const [adStats, setAdStats] = useState<AdStats | null>(testAd);
 
   return (
     <div className='grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
@@ -20,7 +21,7 @@ export function Dashboard() {
               WB Advertisement Statistics
             </h1>
           </div>
-          <div className='grid gap-16 md:gap-32'>
+          <div className='grid gap-16'>
             <AdStatsForm onSubmit={setAdStats} />
             {adStats ? <AdStatsTable data={adStats} /> : <NoDataAlert />}
           </div>
