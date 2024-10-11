@@ -18,7 +18,7 @@ import {
 
 export const UpperHeader = () => {
   return (
-    <header className='flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6'>
+    <header className='sticky top-0 z-[100] flex h-14 items-center gap-4 border-b bg-background px-4 lg:h-[60px] lg:px-6'>
       <Sheet>
         <SheetTrigger asChild>
           <Button variant='outline' size='icon' className='shrink-0 md:hidden'>
@@ -55,7 +55,7 @@ export const UpperHeader = () => {
             <span className='sr-only'>Toggle user menu</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
+        <DropdownMenuContent align='end' className='z-[100]'>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Settings</DropdownMenuItem>
