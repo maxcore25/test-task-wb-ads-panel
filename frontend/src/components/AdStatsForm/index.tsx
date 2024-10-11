@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import axios from 'axios';
+import { axiosInstance } from '@/api';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -55,7 +55,7 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.post('/api/ads', {
+      const response = await axiosInstance.post('/api/ads', {
         advert: values.advert,
         date: format(values.date, 'yyyy-MM-dd'),
       });
