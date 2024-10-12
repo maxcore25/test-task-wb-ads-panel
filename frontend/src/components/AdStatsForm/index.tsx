@@ -38,6 +38,7 @@ export function AdStatsForm({ onSubmit }: AdStatsFormProps) {
       <form
         onSubmit={form.handleSubmit(onSubmitForm)}
         className='grid gap-4 md:flex md:items-end md:gap-4'
+        aria-label='form'
       >
         <FormField
           control={form.control}
