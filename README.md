@@ -1,5 +1,88 @@
 # test-task-wb-ads-panel
 
+![](/docs/main.png)
+
+## Запуск (с Docker)
+
+1. Запустите проект командой
+
+```bash
+docker-compose up -d --build
+```
+
+2. Перейдите по ссылке на фронтенд: http://localhost
+
+3. Перейдите по ссылке на документацию Swagger API: http://localhost:8000/docs
+
+4. Перейдите по ссылке на админ-панель MongoDB и введите `user` и `123` для авторизации: http://localhost:8081
+
+## Storybook
+
+1. Запустите Storybook командой
+
+```bash
+cd frontend
+pnpm sb
+```
+
+2. Перейдите по ссылке: http://localhost:6006
+
+## Тесты
+
+1. Запустите тесты в терминале командой
+
+```bash
+cd frontend
+pnpm test
+```
+
+2. Запустите тесты в веб-интерфейсе командой
+
+```bash
+cd frontend
+pnpm test:ui
+```
+
+3. Перейдите по ссылке: [http://localhost:51204/\_\_vitest\_\_/#/](http://localhost:51204/__vitest__/#/)
+
+## E2E-тесты
+
+1. Запустите e2e-тесты в терминале командой
+
+```bash
+cd frontend
+pnpm test:e2e
+```
+
+2. Запустите e2e-тесты в веб-интерфейсе командой
+
+```bash
+cd frontend
+pnpm test:e2e-ui
+```
+
+## Playwright команды
+
+```bash
+# Runs the end-to-end tests
+pnpm exec playwright test
+
+# Starts the interactive UI mode
+pnpm exec playwright test --ui
+
+# Runs the tests only on Desktop Chrome
+pnpm exec playwright test --project=chromium
+
+# Runs the tests in a specific file
+pnpm exec playwright test example
+
+# Runs the tests in debug mode
+pnpm exec playwright test --debug
+
+# Auto generate tests with Codegen
+pnpm exec playwright codegen
+```
+
 ## Пример запроса к Wildberries API
 
 API URL:
