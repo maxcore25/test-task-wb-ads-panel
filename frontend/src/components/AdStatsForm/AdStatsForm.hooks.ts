@@ -26,7 +26,7 @@ export const useAdStatsForm = ({ onSubmit }: UseAdStatsFormProps) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axiosInstance.post('/api/ads', {
+      const response = await axiosInstance.post<AdStats>('/api/ads', {
         advert: data.advert,
         date: format(data.date, 'yyyy-MM-dd'),
       });
