@@ -1,12 +1,13 @@
 import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
+import { join } from 'path';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AdvertisementModule } from './advertisement/advertisement.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['../.env'],
+      envFilePath: [join(__dirname, '../../.env')],
       isGlobal: true,
     }),
     // MongooseModule.forRoot('mongodb://mongodb:27017/wb_ads_db'),

@@ -3,8 +3,12 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as dotenv from 'dotenv';
+import { join } from 'path';
 
 async function bootstrap() {
+  dotenv.config({ path: join(__dirname, '../../.env') });
+
   const app = await NestFactory.create(AppModule);
 
   app.use(cookieParser());
