@@ -1,18 +1,23 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe('Wb Ads Panel', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:5173');
+  });
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  test('should have metadata', async ({ page }) => {
+    await expect(page).toHaveTitle(/Test Task - WB Ads Panel/);
+  });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  test('should have heading and form', async ({ page }) => {
+    await expect(
+      page.getByRole('heading', { name: 'WB Advertisement Statistics' })
+    ).toBeVisible();
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+    await expect(page.getByRole('form')).toBeVisible();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Submit' })).toBeVisible();
+
+    await expect(page.getByText('No WB ads data fetched')).toBeVisible();
+  });
 });
